@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <stdexcept>
 #include <string>
 void WriteInFile(const char* filename, std::string &str1);
 void CheckFileForSpaces(const char* filename);
@@ -14,8 +15,12 @@ int main ()
                         "I will     spend time   whith    my	   freiends! \n";
    // creating the object stream , file and write data into it:
    const char* filename1 = "data1.txt";
-   WriteInFile(filename1, str1);
-   CheckFileForSpaces(filename1);
+   try
+   {
+      WriteInFile(filename1, str1);
+      CheckFileForSpaces(filename1);
+   }
+   catch (std::exception &ex) { std::cerr << ex.what(); }
 	// std::cin.get ();
    return 0;
 }
